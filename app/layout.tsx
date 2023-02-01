@@ -1,10 +1,14 @@
 import './globals.css'
 
+import UrlForm from './UrlForm'
+
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: RootLayoutProps) {
   return (
     <html lang="en">
       {/*
@@ -12,7 +16,11 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      
+      <body>
+        <UrlForm />
+        {children}
+      </body>
     </html>
   )
 }
