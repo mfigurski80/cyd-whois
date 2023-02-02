@@ -1,0 +1,18 @@
+query lookupDomainQuery($domain: String!) {
+  domainLookup(id: $domain) {
+    domain
+    status
+    create_date
+    whois_server
+    registrar {
+      name
+      url
+    }
+    registrant {
+      name
+      organization
+      country
+      email
+    }
+  }
+}

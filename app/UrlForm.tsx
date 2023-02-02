@@ -1,11 +1,13 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 // import './UrlForm.css'
 
-export default function UrlForm() {
-  const router = useRouter()
+interface UrlFormProps {
+  onSubmit: (url: string) => void
+}
+
+export default function UrlForm({ onSubmit }: UrlFormProps) {
   const [urlInput, setUrlInput] = useState('')
 
   return (
@@ -13,11 +15,11 @@ export default function UrlForm() {
       className="card"
       onSubmit={(e) => {
         e.preventDefault()
-        // forward to /domain/:domain
-        router.push(`/domain/${urlInput}`)
+        onSubmit(urlInput)
+        setUrlInput('')
       }}
     >
-      <label hidden htmlFor="url-input">URL</label>
+      <label hidden htmlFor="url-input">Lookup Domain Name or IP</label>
       <input
         id="url-input"
         type="text"

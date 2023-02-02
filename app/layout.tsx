@@ -1,6 +1,8 @@
-import './globals.css'
+"use client"
+import { useState } from "react";
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-import UrlForm from './UrlForm'
+import './globals.css'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -9,6 +11,11 @@ interface RootLayoutProps {
 export default function RootLayout({
   children,
 }: RootLayoutProps) {
+  const [apolloClient] = useState(new ApolloClient({
+    uri: '/api/graphql',
+    cache: new InMemoryCache(),
+  }))
+
   return (
     <html lang="en">
       {/*
@@ -16,10 +23,10 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      
       <body>
-        <UrlForm />
-        {children}
+        <ApolloProvider client={apolloClient}>
+          {children}
+        </ApolloProvider>
       </body>
     </html>
   )

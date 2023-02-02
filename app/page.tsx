@@ -1,12 +1,13 @@
-import { Inter } from '@next/font/google'
+// import { Inter } from '@next/font/google'
+// const inter = Inter({ subsets: ['latin'] })
 import styles from './page.module.css'
+import DomainLookup from './DomainLookup'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <p>Find details on a specific domain!</p>
+      <DomainLookup />
     </main>
   )
 }
