@@ -1,0 +1,33 @@
+type DomainLookupResultEntity {
+  name: String
+  organization: String
+  street_address: String
+  city: String
+  region: String
+  zip_code: String
+  country: String
+  phone: String
+  fax: String
+  email: String
+}
+type DomainLookupResultRegistrar {
+  iana_id: String
+  name: String
+  url: String
+}
+type DomainLookupResult {
+  domain: String
+  domain_id: String
+  status: String
+  create_date: String
+  update_date: String
+  expire_date: String
+  domain_age: String
+  whois_server: String
+  registrar: DomainLookupResultRegistrar
+  registrant: DomainLookupResultEntity
+  admin: DomainLookupResultEntity
+  tech: DomainLookupResultEntity
+  billing: DomainLookupResultEntity
+  nameservers: [String]
+}

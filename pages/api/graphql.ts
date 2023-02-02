@@ -3,28 +3,29 @@ import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { gql } from 'graphql-tag';
 
-import { DomainLookupResult, GqlDomainLookupResult, DomainLookupApi } from './domain-lookup';
+import { DomainLookupGQLSchema, DomainLookupApi, DomainLookupArgs } from '../../graphql/domain-lookup';
+
+interface ContextValue {
+  req: NextApiRequest;
+  res: NextApiResponse;
+  dataSources: {
+    domainLookupApi: DomainLookupApi;
+  };
+}
 
 const typeDefs = gql`
-  ${GqlDomainLookupResult}
+  ${DomainLookupGQLSchema}
   type Query {
     domainLookup(id: String!): DomainLookupResult
   }
 `
+
 const resolvers = {
   Query: {
-    domainLookup: async (_: any, { id }: any, { dataSources }: any) => {
+    domainLookup: async (_: any, { id }: DomainLookupArgs, { dataSources }: ContextValue) => {
       return dataSources.domainLookupApi.getDomainInfo(id);
     }
   },
-}
-
-interface ContextValue {
-  req: any;
-  res: any;
-  dataSources: {
-    domainLookupApi: DomainLookupApi;
-  };
 }
 
 const server = new ApolloServer<ContextValue>({
