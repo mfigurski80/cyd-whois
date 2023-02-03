@@ -3,6 +3,7 @@ query lookupDomainQuery($domain: String!) {
     domain
     status
     create_date
+    update_date
     whois_server
     registrar {
       name
@@ -11,8 +12,10 @@ query lookupDomainQuery($domain: String!) {
     registrant {
       name
       organization
+      region
       country
       email
+      phone
     }
   }
 }
