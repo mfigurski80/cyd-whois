@@ -6,6 +6,7 @@ import lookupQuery from "./lookup.graphql"
 import styles from './page.module.scss'
 
 import UrlForm from "./UrlForm"
+import LookupResult from "./LookupResult"
 import ApolloQueryWrapper from "../components/ApolloQueryWrapper"
 
 export default function DomainLookup() {
@@ -30,21 +31,8 @@ export default function DomainLookup() {
       </div>
       <div className={styles.output}>
         <ApolloQueryWrapper query={q}>
-          {({domainLookup: data}) => (
-            <div>
-              <h2>Domain Information for: <a href={'http://' + data.domain}>{data.domain}</a></h2>
-              <p>Status: {data.status}</p>
-              <p>Date: {data.create_date} (created) / {data.update_date} (updated)</p>
-              <p>Whois Server: {data.whois_server}</p>
-              <h3>Registrant</h3>
-              <p>Name: {data.registrant.name}</p>
-              <p>Organization: {data.registrant.organization}</p>
-              <p>Country: {data.registrant.country}</p>
-              <p>Email: {data.registrant.email}</p>
-              <h3>Origin Registrar</h3>
-              <p>Name: {data.registrar.name}</p>
-              <p>URL: <a href={data.registrar.url}>{data.registrar.url}</a></p>
-            </div>
+          {data => (
+            <LookupResult data={data.domainLookup} />
           )}
         </ApolloQueryWrapper>
       </div>

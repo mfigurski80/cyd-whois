@@ -9,7 +9,7 @@ interface ApolloQueryWrapperProps {
 
 export default function ApolloQueryWrapper({ query, children }: ApolloQueryWrapperProps) {
   const { loading, error, data } = query
-
+  if (error) console.error(error)
   return (
     <div>
       {loading ? (
