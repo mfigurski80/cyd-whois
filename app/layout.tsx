@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-import './globals.css'
+import './globals.scss'
 
 interface RootLayoutProps {
   children: React.ReactNode

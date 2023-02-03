@@ -1,6 +1,9 @@
 "use client"
 
 import { useState } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai';
+
+import styles from  "./page.module.scss";
 // import './UrlForm.css'
 
 interface UrlFormProps {
@@ -12,7 +15,7 @@ export default function UrlForm({ onSubmit }: UrlFormProps) {
 
   return (
     <form
-      className="card"
+      className={styles['input-form']}
       onSubmit={(e) => {
         e.preventDefault()
         onSubmit(urlInput)
@@ -27,7 +30,7 @@ export default function UrlForm({ onSubmit }: UrlFormProps) {
         placeholder="Lookup Domain or IP"
         onChange={(e) => setUrlInput(e.target.value)}
       />
-      <button id="url-submit" type="submit">Lookup</button>
+      <button id="url-submit" type="submit"><AiOutlineSearch /></button>
     </form>
   )
 }
