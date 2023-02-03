@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { gql, useQuery } from '@apollo/client';
 // @ts-ignore
-import lookupQuery from "./lookup.graphql"
+import LookupQuery from "./lookup.graphql"
 import styles from './page.module.scss'
 
 import UrlForm from "./UrlForm"
@@ -13,9 +13,10 @@ export default function DomainLookup() {
   const router = useRouter()
   const params = useSearchParams()
   const q = useQuery(
-    gql`${lookupQuery}`, { 
-      variables: { domain: params.get('lookup') }, 
-      skip: !params.has('lookup')
+    gql`${LookupQuery}`, { 
+      variables: { lookup: params.get('lookup') }, 
+      skip: !params.has('lookup'),
+      errorPolicy: 'all',
     },
   )
 
@@ -32,7 +33,7 @@ export default function DomainLookup() {
       <div className={styles.output}>
         <ApolloQueryWrapper query={q}>
           {data => (
-            <LookupResult data={data.domainLookup} />
+            <LookupResult data={data} />
           )}
         </ApolloQueryWrapper>
       </div>

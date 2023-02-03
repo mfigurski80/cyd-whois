@@ -9,22 +9,22 @@ interface ApolloQueryWrapperProps {
 
 export default function ApolloQueryWrapper({ query, children }: ApolloQueryWrapperProps) {
   const { loading, error, data } = query
-  if (error) console.error(error.graphQLErrors[0])
+  console.log(data, error)
   return (
     <div>
-      {loading ? (
+      {!!data && Object.values(data).some(i => i !== null) ? children(data)
+      : loading ? (
         <p className={styles.loading}>Loading...</p>
       ) : error ? (
         <div>
           <p className={styles.error}>
-            <AiOutlineWarning /> Error {error.message} :: {error.graphQLErrors[0].extensions.response.body.error.error_message}
+            <AiOutlineWarning /> Error {error.message}
           </p>
           {error.graphQLErrors.map(({ extensions }:any, i:any) => (
-            <p className={styles.loading} key={i}>{JSON.stringify(extensions.response, null, 2)}</p>
+            <p className={styles.loading} key={i}>{JSON.stringify(extensions.response.body, null, 2)}</p>
           ))}
         </div>
       ) : null}
-      {data && children(data)}
     </div>
   )
 }

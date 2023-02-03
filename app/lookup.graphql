@@ -1,5 +1,5 @@
-query lookupDomainQuery($domain: String!) {
-  domainLookup(id: $domain) {
+query lookupDomainIpQuery($lookup: String!) {
+  domainLookup(id: $lookup) {
     domain
     status
     create_date
@@ -17,5 +17,12 @@ query lookupDomainQuery($domain: String!) {
       email
       phone
     }
+  }
+  ipLookup(ip: $lookup) {
+    ip
+    country_name
+    region_name
+    latitude
+    longitude
   }
 }
