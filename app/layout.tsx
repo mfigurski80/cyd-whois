@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-import './globals.css'
+import './globals.scss'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -27,6 +27,9 @@ export default function RootLayout({
         <ApolloProvider client={apolloClient}>
           {children}
         </ApolloProvider>
+        <footer>
+          <h6>This repository is built from <a href="https://github.com/mfigurski80/cyd-whois/tree/master">github.com/mfigurski80/cyd-whois</a></h6>
+        </footer>
       </body>
     </html>
   )
