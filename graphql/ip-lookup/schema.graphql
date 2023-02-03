@@ -1,0 +1,14 @@
+type IpLookupResult {
+  ip: String
+  country_code: String
+  country_name: String
+  region_name: String
+  city_name: String
+  latitude: Float
+  longitude: Float
+  zip_code: String
+  time_zone: String
+  asn: String
+  isp: String
+  is_proxy: Boolean
+}
