@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t mfigurski80/cyd-whois:$(date +%s) -t mfigurski80/cyd-whois:latest
+      run: docker build -t mfigurski80/cyd-whois:$(date +%s) -t mfigurski80/cyd-whois:latest .
       
     - name: Push to Dockerhub Registry
       run: docker push -a mfigurski80/cyd-whois
